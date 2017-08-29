@@ -1405,6 +1405,18 @@ image load_image(char *filename, int w, int h, int c)
     return out;
 }
 
+image convertImage(const void* input, int h, int w, int c) {
+    image im = make_image(w, h, c);
+    int i, j, k;
+    const float *data = (float*)input;
+    for (i = 0; i < h; ++i)
+        for (k = 0; k < c; ++k)
+            for (j = 0; j < w; ++j) 
+                im.data[k * w * h + i * w + j] = data[i * w * c + j * c + k] / 255.0;
+    
+    return im;
+}
+
 image load_image_color(char *filename, int w, int h)
 {
     return load_image(filename, w, h, 3);
