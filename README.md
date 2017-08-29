@@ -1,10 +1,23 @@
-![Darknet Logo](http://pjreddie.com/media/files/darknet-black-small.png)
+# Darknet
 
-#Darknet#
-Darknet is an open source neural network framework written in C and CUDA. It is fast, easy to install, and supports CPU and GPU computation.
+## Introduction
 
-For more information see the [Darknet project website](http://pjreddie.com/darknet).
++ This project clones from [darknet](http://github.com/pjreddie/darknet).
 
-For questions or issues please use the [Google Group](https://groups.google.com/forum/#!forum/darknet).
++ This is an open source neural network framework written in C and CUDA.
 
-Adding converting Numpy array RGB to Image format of darknet.
++ Project's author: pjreddie
+
+## My new adding features:
+
++ Adding converting Numpy array RGB to Image format of darknet.
+
+```python
+import darknet
+from skimage import io
+
+img = io.imread('path/to/image')
+im_ = darknet.convertImage(img.ctypes.data, img.shape[0], img.shape[1], img.shape[2])
+```
+
++ It easily uses darknet with python.
