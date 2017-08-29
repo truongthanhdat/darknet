@@ -89,6 +89,10 @@ predict_image.restype = POINTER(c_float)
 network_detect = lib.network_detect
 network_detect.argtypes = [c_void_p, IMAGE, c_float, c_float, c_float, POINTER(BOX), POINTER(POINTER(c_float))]
 
+convertImage = lib.convertImage
+convertImage.argtypes = [c_void_p, c_int, c_int, c_int]
+convertImage.restype = IMAGE
+
 def classify(net, meta, im):
     out = predict_image(net, im)
     res = []
@@ -112,7 +116,7 @@ def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
     free_image(im)
     free_ptrs(cast(probs, POINTER(c_void_p)), num)
     return res
-    
+
 if __name__ == "__main__":
     #net = load_net("cfg/densenet201.cfg", "/home/pjreddie/trained/densenet201.weights", 0)
     #im = load_image("data/wolf.jpg", 0, 0)
@@ -123,5 +127,5 @@ if __name__ == "__main__":
     meta = load_meta("cfg/coco.data")
     r = detect(net, meta, "data/dog.jpg")
     print r
-    
+
 
