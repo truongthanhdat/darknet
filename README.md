@@ -21,3 +21,9 @@ im_ = darknet.convertImage(img.ctypes.data, img.shape[0], img.shape[1], img.shap
 ```
 
 + It easily uses darknet with python.
+
+## Building
+
++ If you want to build with GPU, you need to edit Makefile. You set GPU=1 and CUDNN=1
+
++ Type make to build. After building finished, you need to copy libdarknet.so to python folder.
